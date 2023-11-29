@@ -1,7 +1,6 @@
 using Aspire.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
-
 var todoapi = builder.AddProject<Projects.AspireTodoApp_Api>("aspiretodoapp.api");
 
 builder.AddNpmApp("frontend", "../todo-app")
@@ -10,3 +9,5 @@ builder.AddNpmApp("frontend", "../todo-app")
 
 
 builder.Build().Run();
+
+

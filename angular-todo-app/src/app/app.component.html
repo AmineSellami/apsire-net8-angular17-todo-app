@@ -1,5 +1,5 @@
 <div>
-  <div class="px-20 h-80 bg-slate-800 pb-5">
+  <div class="px-20 h-64 bg-slate-800 pb-5 rounded-bl-[20%] rounded-br-[20%]">
     <div>
       <p class="text-white pt-5 text-5xl tracking-widest">TODO</p>
       <mat-card>
@@ -16,17 +16,26 @@
       </mat-card>
     </div>
     <div class="mt-10 flex-col">
-      <mat-card>
-        <mat-card-content class="bg-slate-900">
-
-        </mat-card-content>
-      </mat-card>
-      <mat-divider class="bg-slate-500"></mat-divider>
-      <mat-card>
-        <mat-card-content class="bg-slate-900">
-
-        </mat-card-content>
-      </mat-card>
+      @for (todo of todos; track todo.id) {
+        <mat-card>
+          <mat-card-content class="bg-slate-900">
+            <div class="flex flex-row">
+              <mat-checkbox class="mr-5" [checked]="todo.isDone"></mat-checkbox>
+              <p [ngClass]="{'line-through': todo.isDone}" class="text-slate-500 mb-0 text-base self-center grow">{{todo.title}}</p>
+              <button mat-mini-fab aria-label="Delete todo item" class="ml-5 self-center bg-slate-900 outline outline-0 outline-slate-500">
+                <mat-icon class="text-slate-500">delete</mat-icon>
+              </button>  
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-divider class="bg-slate-500"></mat-divider>
+      } @empty {
+        <mat-card>
+          <mat-card-content class="bg-slate-900">
+            <p class="text-slate-500 m-auto text-base self-center">There are no items.</p>
+          </mat-card-content>
+        </mat-card>
+      }
     </div>
   </div>
 </div>
